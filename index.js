@@ -43,17 +43,19 @@ function Person(name, age) {
   this.name = name;
   this.age = age;
   this.stomach = [];
-
 }
+
 
 
 Person.prototype.eat = function (someFood) {
-  this.someFood = someFood;
+
+  this.someFood = 'edible'
+
   this.stomach = []
+  if (this.stomach.length === 10) {
+    this.stomach.push('edible')
+  }
 }
-
-// this.stomach.push('rice', 'beans', 'yam', 'fish', 'chicken', 'banana', 'brocolli', 'potato', 'fruits', 'turkey')
-
 
 Person.prototype.poops = function () {
   this.stomach = []
@@ -63,6 +65,8 @@ Person.prototype.toString = function () {
   this.stomach = []
   return `${this.name}, ${this.age}`
 }
+
+
 
 /*
   TASK 2
@@ -86,17 +90,17 @@ function Car(model, milesPerGallon) {
 }
 
 Car.prototype.fill = function (gallons) {
-  this.tank = gallons
-  this.odometer = 0
+  return this.tank += gallons
+
 }
 
 Car.prototype.drive = function (distance) {
+  this.odometer += distance;
 
-  return `I ran out of  fuel at  ${this.odometer} miles!`
-  this.distance = distance;
-  this.tank = 0;
-  this.odometer = 0;
-
+  this.tank -= distance / this.milesPerGallon;
+  if (distance > this.milesPerGallon && this.tank === 0) {
+    return `I ran out of  fuel at  ${this.odometer} miles!`
+  }
 }
 
 /*
