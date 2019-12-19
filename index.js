@@ -26,17 +26,70 @@ Airplane.prototype.land = function () {
 // 👇 COMPLETE YOUR WORK BELOW 👇
 */
 
+// /*
+//   TASK 1
+//     - Write a Person Constructor that initializes `name` and `age` from arguments.
+//     - All instances of Person should initialize with an empty `stomach` array.
+//     - Give instances of Person the ability to `.eat("someFood")`:
+//         .
+//     - Give instances of Person the ability to `.poop()`:
+//         + When an instance poops, its `stomach` should empty.
+//     - Give instances+ When eating an edible, it should be pushed into the `stomach`.
+//         + The `eat` method should have no effect if there are 10 items in the `stomach` of Person a method `.toString()`:
+//         + It should return a string with `name` and `age`. Example: "Mary, 50"
+// */
+
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   this.stomach = [];
+// }
+
+
+
+// Person.prototype.eat = function (someFood) {
+
+//   this.someFood = someFood
+//   this.stomach = []
+//   if (this.stomach.length === 10) {
+//     this.stomach.push(someFood)
+//   }
+// }
+
+// Person.prototype.poops = function () {
+//   this.stomach = []
+//   // if (this.stomach.length  >10) {
+//   //   return this.stomach.length === 0
+//   // }
+
+// }
+
+// Person.prototype.toString = function () {
+//   this.stomach = []
+//   return `${this.name}, ${this.age}`
+// }
+
+
 /*
-  TASK 1
+TASK 1
     - Write a Person Constructor that initializes `name` and `age` from arguments.
     - All instances of Person should initialize with an empty `stomach` array.
     - Give instances of Person the ability to `.eat("someFood")`:
-        + When eating an edible, it should be pushed into the `stomach`.
-        + The `eat` method should have no effect if there are 10 items in the `stomach`.
+        .
     - Give instances of Person the ability to `.poop()`:
         + When an instance poops, its `stomach` should empty.
-    - Give instances of Person a method `.toString()`:
+    - Give instances+ When eating an edible, it should be pushed into the `stomach`.
+        + The `eat` method should have no effect if there are 10 items in the `stomach` of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
+  
+  1) Instances of Person get eat, poop and toString methods from their prototype
+  2) Instances of Person can eat up to 10 foods
+  ✓ Instances of Person can eat no more than 10 foods: 3ms
+  3) Instances of Person can poop to empty stomach
+
+
+
+
 */
 
 function Person(name, age) {
@@ -49,22 +102,40 @@ function Person(name, age) {
 
 Person.prototype.eat = function (someFood) {
 
-  this.someFood = 'edible'
-
-  this.stomach = []
-  if (this.stomach.length === 10) {
-    this.stomach.push('edible')
+  //this.someFood = someFood
+  //this.stomach = []
+  if (this.stomach.length < 10) {
+    this.stomach.push(someFood)
   }
 }
 
-Person.prototype.poops = function () {
+Person.prototype.poop = function () {
   this.stomach = []
+  //if (this.stomach.length  >10) {
+  //return this.stomach.length === 0
+  //}
+
 }
 
 Person.prototype.toString = function () {
-  this.stomach = []
+  //this.stomach = []
   return `${this.name}, ${this.age}`
 }
+
+//let andre = new Person("Andre", 21);
+//andre.eat("food");
+//console.log(andre.poops());
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -95,13 +166,16 @@ Car.prototype.fill = function (gallons) {
 }
 
 Car.prototype.drive = function (distance) {
+  let max = 200
   this.odometer += distance;
-
   this.tank -= distance / this.milesPerGallon;
   if (distance > this.milesPerGallon && this.tank === 0) {
-    return `I ran out of  fuel at  ${this.odometer} miles!`
-  }
+    return `I ran out of  fuel at  ${this.odometer}miles!`
+  } else (this.odometer === max)
+
 }
+
+
 
 /*
   TASK 3
@@ -111,21 +185,20 @@ Car.prototype.drive = function (distance) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby(name, age, favoriteToy) {
-  this.name = name;
-  this.age = age;
+  Person.call(this, name, age);
   this.favoriteToy = favoriteToy;
-  this.stomach = [];
-
 }
-
+Baby.prototype = Object.create(Person.prototype);
 Baby.prototype.play = function () {
-  `Playing with ${this.favoriteToy}`
+  if (this.favoriteToy) {
+    return `Playing with ${this.favoriteToy}`;
+  }
+};
 
-}
 
 /*
   TASK 4
-
+ 
   In your own words explain the four principles for the "this" keyword below:
   1. 
   2. 
