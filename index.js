@@ -39,8 +39,29 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 
+}
+
+
+Person.prototype.eat = function (someFood) {
+  this.someFood = someFood;
+  this.stomach = []
+}
+
+// this.stomach.push('rice', 'beans', 'yam', 'fish', 'chicken', 'banana', 'brocolli', 'potato', 'fruits', 'turkey')
+
+
+Person.prototype.poops = function () {
+  this.stomach = []
+}
+
+Person.prototype.toString = function () {
+  this.stomach = []
+  return `${this.name}, ${this.age}`
 }
 
 /*
@@ -57,7 +78,24 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = 0
+  this.odometer = 0
+}
+
+Car.prototype.fill = function (gallons) {
+  this.tank = gallons
+  this.odometer = 0
+}
+
+Car.prototype.drive = function (distance) {
+
+  return `I ran out of  fuel at  ${this.odometer} miles!`
+  this.distance = distance;
+  this.tank = 0;
+  this.odometer = 0;
 
 }
 
@@ -68,11 +106,20 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+  this.stomach = [];
 
 }
 
-/* 
+Baby.prototype.play = function () {
+  `Playing with ${this.favoriteToy}`
+
+}
+
+/*
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
